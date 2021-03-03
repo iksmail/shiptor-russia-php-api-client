@@ -34,6 +34,12 @@ class Shiptor{
         if(isset($arParams["BASE_URL"]) && !empty($arParams["BASE_URL"])){
             Configuration::setBaseUrl($arParams["BASE_URL"]);
         }
+        if (!empty($arParams['SHIPPING_CLIENT'])) {
+            Configuration::setShippingEndpointClient($arParams['SHIPPING_CLIENT']);
+        }
+        if (!empty($arParams['PUBLIC_CLIENT'])) {
+            Configuration::setPublicEndpointClient($arParams['PUBLIC_CLIENT']);
+        }
     }
     public function PublicEndpoint(){
         return new PublicEndpoint();

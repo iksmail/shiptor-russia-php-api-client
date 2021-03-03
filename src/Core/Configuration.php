@@ -11,6 +11,8 @@ class Configuration{
     private static $shippingUrl;
     private static $publicUrl;
     private static $baseUrl = 'https://api.shiptor.ru';
+    private static $shippingEndpointClient = '';
+    private static $publicEndpointClient = '';
     public static $last_query_ts = 0;
 
     const PUBLIC_URL = "/public/v1";
@@ -62,6 +64,12 @@ class Configuration{
                 self::$publicUrl = self::PUBLIC_URL;
         }
     }
+    public static function setShippingEndpointClient($shippingEndpointClient){
+        self::$shippingEndpointClient = $shippingEndpointClient;
+    }
+    public static function setPublicEndpointClient($publicEndpointClient){
+        self::$publicEndpointClient = $publicEndpointClient;
+    }
     public static function getApiKey(){
         return self::$apiKey;
     }
@@ -94,5 +102,11 @@ class Configuration{
     }
     public static function setMaxRequestNum($numOfRequest){
         self::$MAX_REQUEST_PER_SEC = intval($numOfRequest);
+    }
+    public static function getShippingEndpointClient(){
+        return self::$shippingEndpointClient;
+    }
+    public static function getPublicEndpointClient(){
+        return self::$publicEndpointClient;
     }
 }

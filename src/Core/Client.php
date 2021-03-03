@@ -3,7 +3,8 @@ namespace ShiptorRussiaApiClient\Client\Core;
 
 use GuzzleHttp\Client as GuzzleClient,
     GuzzleHttp\Exception\BadResponseException,
-    ShiptorRussiaApiClient\Client\Core\Configuration;
+    ShiptorRussiaApiClient\Client\Api\ShippingEndpoint\Client as ShippingEndpointClient,
+    ShiptorRussiaApiClient\Client\Api\PublicEndpoint\Client as PublicEndpointClient;
 
 abstract class Client{
     protected $apiUrl;
@@ -19,6 +20,11 @@ abstract class Client{
     }
     final public static function getInstance(){
         $calledClass = get_called_class();
+        if (ShippingEndpointClient::class == $calledClass && Configuration::getShippingEndpointClient()) {
+            static::$instances[$calledClass] = Configuration::getShippingEndpointClient();
+        } elseif (PublicEndpointClient::class == $calledClass && Configuration::getPublicEndpointClient()) {
+            static::$instances[$calledClass] = Configuration::getPublicEndpointClient();
+        }
         if (!isset(static::$instances[$calledClass])){
             static::$instances[$calledClass] = new $calledClass();
         }
