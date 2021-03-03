@@ -3,18 +3,18 @@
     "license": "MIT",
     "type": "library",
     "description": "Shiptor Russia Api client",
-    "version": "1.6.2",
+    "version": "1.6.2.1",
     "autoload": {
         "psr-4": {
-          "ShiptorRussiaApiClient\\Client\\": "src/"
+            "ShiptorRussiaApiClient\\Client\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-          "ShiptorRussiaApiClient\\Client\\Test\\": "tests/"
+            "ShiptorRussiaApiClient\\Client\\Test\\": "tests/"
         }
     },
-    "require" : {
+    "require": {
         "php": ">=5.5.0",
         "guzzlehttp/guzzle": "~5.1 || >= 6.3"
     },
