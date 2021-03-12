@@ -7,7 +7,7 @@ class GetDeliveryPoints extends GenericRequest{
     protected $name = "getDeliveryPoints";
     protected function initFields(){
         $this->getFieldsCollection()
-                ->String("kladr_id")->setRequired()->add()
+                ->String("kladr_id")->add()
                 ->Enum("courier")->setOptions($this->getAbailablePvzCouriers())->add()
                 ->Number("shipping_method")->add()
                 ->Boolean("cod")->add()
