@@ -22,4 +22,7 @@ class Product extends ArrayCollection{
     public function getVat(){
         return $this->get("vat");
     }
+    public function getMarkCode(){
+        return $this->get('mark_code');
+    }
 }

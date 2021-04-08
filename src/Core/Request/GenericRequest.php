@@ -16,6 +16,9 @@ abstract class GenericRequest{
     public function validate(){
         $this->getFieldsCollection()->validate();
     }
+    public function toArray(){
+        return $this->getFieldsCollection()->toArray();
+    }
     protected function setField($name,$value){
         $this->getFieldsCollection()->get($name)->setValue($value);
         return $this;

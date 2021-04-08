@@ -49,6 +49,9 @@ class ShippingEndpoint{
     private $recoverService;
     private $removePackage;
     private $suggestSettlement;
+    public function addMultiPlacePackage(){
+        return $this->addPackage = new ShippingRequest\AddMultiPlacePackage();
+    }
     public function addPackage(){
         return $this->addPackage = new ShippingRequest\AddPackage();
     }

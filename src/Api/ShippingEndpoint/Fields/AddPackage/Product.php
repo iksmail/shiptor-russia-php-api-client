@@ -9,7 +9,9 @@ class Product extends Custom{
                 ->String("shopArticle")->setRequired()->add()
                 ->Number("count")->setRequired()->add()
                 ->Number("price")->setRequired()->add()
-                ->Number("vat")->add();
+                ->Number("vat")->add()
+                ->Number("mark_code")->add()
+        ;
     }
     public function setShopArticle($article){
         $this->getFieldsCollection()->get('shopArticle')->setValue($article);
@@ -25,6 +27,10 @@ class Product extends Custom{
     }
     public function setVat($vat){
         $this->getFieldsCollection()->get('vat')->setValue($vat);
+        return $this;
+    }
+    public function setMarkCode($markCode) {
+        $this->getFieldsCollection()->get('mark_code')->setValue($markCode);
         return $this;
     }
     public function checkSingleValue($value){

@@ -71,6 +71,8 @@ class AddPackage extends GenericShippingRequest{
                     $this->getAddress()->get('house')->setRequired();
                 }
             }
+        } else {
+            $this->getAddress()->get('kladr_id')->unsetRequired();
         }
         parent::validate();
     }
