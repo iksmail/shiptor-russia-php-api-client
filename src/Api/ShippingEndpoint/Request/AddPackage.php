@@ -71,6 +71,11 @@ class AddPackage extends GenericShippingRequest{
                     $this->getAddress()->get('house')->setRequired();
                 }
             }
+            if (!empty($addressLine)) {
+                $this->getAddress()->get('kladr_id')->unsetRequired();
+                $this->getAddress()->get('street')->unsetRequired();
+                $this->getAddress()->get('house')->unsetRequired();
+            }
         } else {
             $this->getAddress()->get('kladr_id')->unsetRequired();
         }
