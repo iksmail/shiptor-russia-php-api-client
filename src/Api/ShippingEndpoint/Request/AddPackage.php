@@ -43,7 +43,7 @@ class AddPackage extends GenericShippingRequest{
                     ->String("house")->add()
                     ->String("apartment")->add()
                     ->String("address_line_1")->add()
-                    ->String("kladr_id")->setRequired()->add()
+                    ->String("kladr_id")->add()
                 ->endCollection()
             ->endCollection()
             ->Custom("products",PackageProduct::class)->setRequired()->setMulty()->add()
@@ -58,26 +58,20 @@ class AddPackage extends GenericShippingRequest{
             $this->getAddress()->get('name')->unsetRequired();
             $this->getAddress()->get('surname')->unsetRequired();
         }
-        $pvz = $this->getDeparture()->get('delivery_point')->getValue();
-        if(empty($pvz)){
-            $street = $this->getAddress()->get('street')->getValue();
-            $house = $this->getAddress()->get('house')->getValue();
-            $addressLine = $this->getAddress()->get('address_line_1')->getValue();
-            if(empty($street) && empty($house)){
-                $this->getAddress()->get('address_line_1')->setRequired();
-            }else{
-                if(empty($street) || empty($house)){
-                    $this->getAddress()->get('street')->setRequired();
-                    $this->getAddress()->get('house')->setRequired();
-                }
-            }
-            if (!empty($addressLine)) {
-                $this->getAddress()->get('kladr_id')->unsetRequired();
-                $this->getAddress()->get('street')->unsetRequired();
-                $this->getAddress()->get('house')->unsetRequired();
-            }
+        $street = $this->getAddress()->get('street')->getValue();
+        $house = $this->getAddress()->get('house')->getValue();
+        $addressLine = $this->getAddress()->get('address_line_1')->getValue();
+        if (empty($street) && empty($house)) {
+            $this->getAddress()->get('address_line_1')->setRequired();
         } else {
-            $this->getAddress()->get('kladr_id')->unsetRequired();
+            if (empty($street) || empty($house)) {
+                $this->getAddress()->get('street')->setRequired();
+                $this->getAddress()->get('house')->setRequired();
+            }
+        }
+        if (!empty($addressLine)) {
+            $this->getAddress()->get('street')->unsetRequired();
+            $this->getAddress()->get('house')->unsetRequired();
         }
         parent::validate();
     }
